@@ -1,0 +1,19 @@
+version: '3'
+
+volumes:
+  angular-node-modules:
+    driver: local
+
+services:
+
+  ## dev stuff ##
+  angular-dev:
+    build:
+      context: ./angular
+      args:
+        angularprojectname: ${ANGULARPROJECTNAME}
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./angular:/mnt
+      - angular-node-modules:/mnt/${ANGULARPROJECTNAME}/node_modules
